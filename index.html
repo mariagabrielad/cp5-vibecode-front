@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Entrelinhas: um clube de leitura para descobrir histórias, compartilhar ideias e criar conexões.">
+  <title>Entrelinhas | Clube do Livro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --verde: #4A5D4E;
+      --fundo: #F8F9FA;
+      --texto: #2D3142;
+      --terracota: #D97450;
+      --branco: #FFFFFF;
+      --cinza: #737875;
+      --linha: #E2E6E1;
+      --verde-claro: #E9EEE8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--fundo);
+      color: var(--texto);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.6;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .cabecalho {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(248, 249, 250, 0.96);
+      border-bottom: 1px solid var(--linha);
+      backdrop-filter: blur(10px);
+    }
+
+    .navegacao {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .marca {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+    }
+
+    .marca-simbolo {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--verde);
+      color: var(--branco);
+      font-size: 1.25rem;
+    }
+
+    .links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      color: #59615A;
+      font-size: 0.9rem;
+    }
+
+    .links a:hover,
+    .link-texto:hover {
+      color: var(--terracota);
+    }
+
+    .botao {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      padding: 13px 20px;
+      border: 1px solid var(--terracota);
+      border-radius: 4px;
+      background: var(--terracota);
+      color: var(--branco);
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .botao:hover {
+      background: #C66442;
+      border-color: #C66442;
+      transform: translateY(-2px);
+    }
+
+    .botao-secundario {
+      background: transparent;
+      border-color: var(--verde);
+      color: var(--verde);
+    }
+
+    .botao-secundario:hover {
+      background: var(--verde);
+      color: var(--branco);
+      border-color: var(--verde);
+    }
+
+    .hero {
+      padding: 58px 0 76px;
+    }
+
+    .hero-grade {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: center;
+      gap: 58px;
+    }
+
+    .sobretitulo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--verde);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .sobretitulo::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--terracota);
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 500;
+      line-height: 1.12;
+    }
+
+    h1 {
+      margin: 20px 0;
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      letter-spacing: -0.045em;
+    }
+
+    h1 em {
+      color: var(--verde);
+      font-weight: 400;
+    }
+
+    .hero-descricao {
+      max-width: 470px;
+      color: #68706A;
+      font-size: 1.04rem;
+    }
+
+    .hero-acoes {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .link-texto {
+      padding: 10px 4px;
+      color: var(--verde);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .hero-nota {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 32px;
+      color: var(--cinza);
+      font-size: 0.82rem;
+    }
+
+    .nota-simbolo {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #D7DDD7;
+      border-radius: 50%;
+      color: var(--verde);
+      font-size: 1.15rem;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 510px;
+    }
+
+    .hero-imagem {
+      position: absolute;
+      inset: 0 38px 28px 0;
+      overflow: hidden;
+      background: #D8CCB8;
+    }
+
+    .hero-imagem img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero-legenda {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 215px;
+      padding: 22px;
+      background: var(--verde);
+      color: var(--branco);
+    }
+
+    .hero-legenda span {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    .hero-legenda strong {
+      display: block;
+      margin-top: 7px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      line-height: 1.25;
+    }
+
+    .faixa {
+      padding: 27px 0;
+      background: var(--verde);
+      color: var(--branco);
+    }
+
+    .faixa-conteudo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .faixa-frase {
+      margin: 0;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(1.15rem, 2vw, 1.65rem);
+    }
+
+    .faixa-detalhe {
+      color: #E0E5DF;
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+
+    .secao {
+      padding: 88px 0;
+    }
+
+    .secao-livros {
+      background: var(--branco);
+    }
+
+    .secao-cabecalho {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 26px;
+      margin-bottom: 34px;
+    }
+
+    .secao-cabecalho h2,
+    .sobre-texto h2,
+    .convite h2 {
+      margin: 12px 0 0;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      letter-spacing: -0.035em;
+    }
+
+    .secao-cabecalho h2 {
+      max-width: 550px;
+    }
+
+    .secao-cabecalho p {
+      max-width: 330px;
+      margin: 0 0 5px;
+      color: var(--cinza);
+      font-size: 0.92rem;
+    }
+
+    .carrossel {
+      overflow: hidden;
+    }
+
+    .livros-lista {
+      display: grid;
+      grid-auto-columns: calc((100% - 40px) / 3);
+      grid-auto-flow: column;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 2px 2px 18px;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      scrollbar-color: #B5BEB5 transparent;
+      scrollbar-width: thin;
+    }
+
+    .livro {
+      min-width: 0;
+      padding: 0;
+      overflow: hidden;
+      border: 1px solid var(--linha);
+      background: var(--fundo);
+      color: var(--texto);
+      text-align: left;
+      cursor: pointer;
+      scroll-snap-align: start;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .livro:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px #25302712;
+    }
+
+    .livro-imagem {
+      height: 310px;
+      overflow: hidden;
+      background: #E8E2D8;
+    }
+
+    .livro-imagem img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+
+    .livro:hover .livro-imagem img {
+      transform: scale(1.035);
+    }
+
+    .livro-conteudo {
+      padding: 21px 22px 24px;
+    }
+
+    .livro-categoria {
+      color: var(--terracota);
+      font-size: 0.69rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .livro h3 {
+      margin: 9px 0 8px;
+      font-size: 1.55rem;
+    }
+
+    .livro p {
+      min-height: 48px;
+      margin-bottom: 14px;
+      color: var(--cinza);
+      font-size: 0.86rem;
+    }
+
+    .livro-acao {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--verde);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .carrossel-controles {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .seta {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #D8DED8;
+      border-radius: 50%;
+      background: var(--branco);
+      color: var(--verde);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .seta:hover {
+      background: var(--verde);
+      color: var(--branco);
+    }
+
+    .sobre-grade {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 72px;
+    }
+
+    .sobre-imagem {
+      height: 420px;
+      overflow: hidden;
+      background: #E4D8C7;
+    }
+
+    .sobre-imagem img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .sobre-texto h2 {
+      margin-bottom: 20px;
+    }
+
+    .sobre-texto > p {
+      color: var(--cinza);
+    }
+
+    .valores {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 28px 0;
+    }
+
+    .valor {
+      padding-top: 14px;
+      border-top: 1px solid var(--linha);
+    }
+
+    .valor strong {
+      display: block;
+      margin-bottom: 4px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .valor span {
+      color: var(--cinza);
+      font-size: 0.82rem;
+    }
+
+    .secao-convite {
+      padding-top: 0;
+    }
+
+    .convite {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 32px;
+      padding: 48px 54px;
+      background: var(--verde-claro);
+    }
+
+    .convite h2 {
+      max-width: 560px;
+    }
+
+    .convite-texto {
+      max-width: 570px;
+      margin: 12px 0 0;
+      color: #626B63;
+    }
+
+    .mensagem {
+      display: none;
+      max-width: 260px;
+      margin: 12px 0 0;
+      color: var(--verde);
+      font-size: 0.85rem;
+    }
+
+    .mensagem.visivel {
+      display: block;
+    }
+
+    .rodape {
+      padding: 32px 0;
+      background: #252F28;
+      color: var(--branco);
+    }
+
+    .rodape-conteudo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .rodape .marca-simbolo {
+      background: var(--branco);
+      color: var(--verde);
+    }
+
+    .rodape-legenda {
+      color: #C2CBC2;
+      font-size: 0.8rem;
+    }
+
+    .rodape-links {
+      display: flex;
+      gap: 22px;
+      color: #E0E5DF;
+      font-size: 0.82rem;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background: rgba(28, 32, 29, 0.7);
+    }
+
+    .modal.aberto {
+      display: flex;
+    }
+
+    .modal-conteudo {
+      position: relative;
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      width: min(780px, 100%);
+      max-height: 90vh;
+      overflow: auto;
+      background: var(--fundo);
+    }
+
+    .modal-imagem {
+      min-height: 400px;
+      background: #E4D8C7;
+    }
+
+    .modal-imagem img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-texto {
+      padding: 42px 36px;
+    }
+
+    .modal-texto h2 {
+      margin: 12px 0 16px;
+      font-size: 2.2rem;
+    }
+
+    .modal-texto p {
+      color: #626B63;
+      font-size: 0.93rem;
+    }
+
+    .fechar-modal {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      background: var(--branco);
+      color: var(--texto);
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 850px) {
+      .hero-grade {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+
+      .hero-visual {
+        min-height: 430px;
+      }
+
+      .livros-lista {
+        grid-auto-columns: calc((100% - 20px) / 2);
+      }
+
+      .sobre-grade {
+        gap: 35px;
+      }
+
+      .convite {
+        padding: 36px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        width: min(100% - 32px, 500px);
+      }
+
+      .navegacao {
+        min-height: auto;
+        padding: 14px 0;
+        flex-wrap: wrap;
+      }
+
+      .marca {
+        font-size: 1.25rem;
+      }
+
+      .navegacao > .botao {
+        padding: 10px 13px;
+        font-size: 0.8rem;
+      }
+
+      .links {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+        font-size: 0.82rem;
+      }
+
+      .hero {
+        padding: 40px 0 50px;
+      }
+
+      .hero-grade,
+      .sobre-grade {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grade {
+        gap: 35px;
+      }
+
+      h1 {
+        font-size: 3.25rem;
+      }
+
+      .hero-visual {
+        min-height: 390px;
+      }
+
+      .hero-imagem {
+        inset: 0 25px 20px 0;
+      }
+
+      .hero-legenda {
+        width: 175px;
+        padding: 17px;
+      }
+
+      .faixa-conteudo {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .faixa-detalhe {
+        white-space: normal;
+      }
+
+      .secao {
+        padding: 62px 0;
+      }
+
+      .secao-cabecalho {
+        display: block;
+      }
+
+      .secao-cabecalho p {
+        margin-top: 16px;
+      }
+
+      .livros-lista {
+        grid-auto-columns: 84%;
+      }
+
+      .livro-imagem {
+        height: 300px;
+      }
+
+      .sobre-imagem {
+        height: 340px;
+      }
+
+      .secao-convite {
+        padding-top: 0;
+      }
+
+      .convite {
+        grid-template-columns: 1fr;
+        padding: 30px 24px;
+      }
+
+      .convite .botao {
+        justify-self: start;
+      }
+
+      .rodape-conteudo {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .modal-conteudo {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-imagem {
+        min-height: 240px;
+        height: 240px;
+      }
+
+      .modal-texto {
+        padding: 28px 24px;
+      }
+
+      .modal-texto h2 {
+        font-size: 1.8rem;
+      }
+
+      .fechar-modal {
+        position: fixed;
+        top: 18px;
+        right: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="cabecalho">
+    <div class="container navegacao">
+      <a class="marca" href="#inicio" aria-label="Entrelinhas, início">
+        <span class="marca-simbolo">e.</span>
+        <span>entrelinhas</span>
+      </a>
+      <nav class="links" aria-label="Navegação principal">
+        <a href="#sobre">O clube</a>
+        <a href="#leituras">Leituras</a>
+        <a href="#encontros">Encontros</a>
+      </nav>
+      <a class="botao" href="#encontros">Faça parte <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grade">
+        <div class="hero-texto">
+          <span class="sobretitulo">Um clube para quem sente as palavras</span>
+          <h1>Livros que aproximam. <em>Conversas que ficam.</em></h1>
+          <p class="hero-descricao">Um espaço para ler sem pressa, descobrir novas perspectivas e compartilhar histórias com pessoas que também encontram um pouco de si em cada página.</p>
+          <div class="hero-acoes">
+            <a class="botao" href="#leituras">Explore as leituras <span aria-hidden="true">→</span></a>
+            <a class="link-texto" href="#sobre">Conheça o clube ↓</a>
+          </div>
+          <div class="hero-nota">
+            <span class="nota-simbolo">✳</span>
+            <span>Leituras compartilhadas, no seu ritmo.</span>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-imagem">
+            <img src="assets/banner-book-club.png" alt="Placas com as palavras Book Club em uma porta de madeira">
+          </div>
+          <div class="hero-legenda">
+            <span>Entre uma página e outra</span>
+            <strong>Seu próximo capítulo começa aqui.</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="faixa">
+      <div class="container faixa-conteudo">
+        <p class="faixa-frase">“A leitura é uma forma de encontrar companhia até no silêncio.”</p>
+        <span class="faixa-detalhe">Leia · Reflita · Compartilhe</span>
+      </div>
+    </div>
+
+    <section class="secao secao-livros" id="leituras">
+      <div class="container">
+        <div class="secao-cabecalho">
+          <div>
+            <span class="sobretitulo">Nossa estante</span>
+            <h2>Histórias que merecem uma pausa.</h2>
+          </div>
+          <p>Três leituras para despertar curiosidade, iniciar conversas e olhar o mundo por outros ângulos.</p>
+        </div>
+
+        <div class="carrossel">
+          <div class="livros-lista" id="listaLivros" aria-label="Carrossel de referências de livros">
+            <button class="livro" type="button" data-livro="0" aria-label="Ver sinopse de Just Kids">
+              <div class="livro-imagem"><img src="assets/livro-just-kids.png" alt="Pessoa segurando o livro Just Kids, de Patti Smith"></div>
+              <div class="livro-conteudo">
+                <span class="livro-categoria">Memória · Arte</span>
+                <h3>Just Kids</h3>
+                <p>Patti Smith e a juventude criativa em Nova York.</p>
+                <span class="livro-acao">Descobrir o livro ↗</span>
+              </div>
+            </button>
+
+            <button class="livro" type="button" data-livro="1" aria-label="Ver sinopse de The Bee Sting">
+              <div class="livro-imagem"><img src="assets/livro-bee-sting.png" alt="Pessoa segurando o livro The Bee Sting, de Paul Murray"></div>
+              <div class="livro-conteudo">
+                <span class="livro-categoria">Ficção · Família</span>
+                <h3>The Bee Sting</h3>
+                <p>Uma família, segredos e o delicado efeito das escolhas.</p>
+                <span class="livro-acao">Descobrir o livro ↗</span>
+              </div>
+            </button>
+
+            <button class="livro" type="button" data-livro="2" aria-label="Ver sinopse de Cem Anos de Solidão">
+              <div class="livro-imagem"><img src="assets/livro-cem-anos.png" alt="Pessoa segurando o livro One Hundred Years of Solitude, de Gabriel García Márquez"></div>
+              <div class="livro-conteudo">
+                <span class="livro-categoria">Clássico · Realismo mágico</span>
+                <h3>Cem Anos de Solidão</h3>
+                <p>Uma saga familiar em que memória e imaginação se encontram.</p>
+                <span class="livro-acao">Descobrir o livro ↗</span>
+              </div>
+            </button>
+          </div>
+          <div class="carrossel-controles">
+            <button class="seta" id="anterior" type="button" aria-label="Livros anteriores">←</button>
+            <button class="seta" id="proximo" type="button" aria-label="Próximos livros">→</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="sobre">
+      <div class="container sobre-grade">
+        <div class="sobre-imagem">
+          <img src="assets/banner-reading.png" alt="Ilustração aconchegante de um personagem lendo em uma poltrona">
+        </div>
+        <div class="sobre-texto">
+          <span class="sobretitulo">Mais do que terminar um livro</span>
+          <h2>Um lugar para ler do seu jeito.</h2>
+          <p>O Entrelinhas nasceu da ideia de que uma boa leitura fica ainda melhor quando encontra outras pessoas. Aqui, não existe competição para ler mais rápido: existe espaço para descobrir, sentir e conversar.</p>
+          <div class="valores">
+            <div class="valor"><strong>Sem pressão</strong><span>Cada pessoa encontra seu próprio ritmo.</span></div>
+            <div class="valor"><strong>Trocas reais</strong><span>Opiniões diferentes são bem-vindas.</span></div>
+            <div class="valor"><strong>Novas descobertas</strong><span>Da ficção aos livros de memória.</span></div>
+            <div class="valor"><strong>Uma comunidade</strong><span>Histórias que criam conexões.</span></div>
+          </div>
+          <a class="link-texto" href="#encontros">Quero participar do próximo encontro →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao secao-convite" id="encontros">
+      <div class="container">
+        <div class="convite">
+          <div>
+            <span class="sobretitulo">Sua próxima leitura começa aqui</span>
+            <h2>Vamos virar essa página juntos?</h2>
+            <p class="convite-texto">Entre para a lista de interesse e receba novidades sobre as próximas leituras e encontros do clube.</p>
+          </div>
+          <div>
+            <button class="botao" id="botaoInteresse" type="button">Tenho interesse ↗</button>
+            <p class="mensagem" id="mensagemInteresse" role="status">Que bom ter você por aqui! Este botão é demonstrativo e pode ser conectado a um formulário ou canal de contato.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape-conteudo">
+      <a class="marca" href="#inicio"><span class="marca-simbolo">e.</span><span>entrelinhas</span></a>
+      <span class="rodape-legenda">Um clube de leitura para desacelerar e se conectar.</span>
+      <div class="rodape-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#leituras">Estante</a>
+        <a href="#encontros">Participar</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal" id="modalLivro" role="dialog" aria-modal="true" aria-labelledby="tituloModal">
+    <div class="modal-conteudo">
+      <button class="fechar-modal" id="fecharModal" type="button" aria-label="Fechar janela">×</button>
+      <div class="modal-imagem"><img id="imagemModal" src="assets/livro-just-kids.png" alt=""></div>
+      <div class="modal-texto">
+        <span class="sobretitulo" id="categoriaModal">Memória · Arte</span>
+        <h2 id="tituloModal">Just Kids</h2>
+        <p id="sinopseModal"></p>
+        <p id="perguntaModal"></p>
+        <button class="botao" id="voltarEstante" type="button">Voltar à estante</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const livros = [
+      {
+        titulo: "Just Kids",
+        categoria: "Memória · Arte",
+        imagem: "assets/livro-just-kids.png",
+        sinopse: "Em Just Kids, Patti Smith revisita sua relação com o fotógrafo Robert Mapplethorpe e os anos em que ambos buscavam construir uma vida dedicada à arte em Nova York. É uma narrativa íntima sobre juventude, amizade, amor e ambição criativa.",
+        pergunta: "Para conversar no clube: como as pessoas que encontramos transformam nossa maneira de criar e enxergar o mundo?"
+      },
+      {
+        titulo: "The Bee Sting",
+        categoria: "Ficção · Família",
+        imagem: "assets/livro-bee-sting.png",
+        sinopse: "O romance de Paul Murray acompanha uma família irlandesa que tenta manter as aparências enquanto enfrenta dificuldades financeiras, conflitos pessoais e segredos. A história explora como pequenas decisões podem reverberar por toda uma família.",
+        pergunta: "Para conversar no clube: até que ponto conhecemos de verdade as pessoas mais próximas?"
+      },
+      {
+        titulo: "Cem Anos de Solidão",
+        categoria: "Clássico · Realismo mágico",
+        imagem: "assets/livro-cem-anos.png",
+        sinopse: "No clássico de Gabriel García Márquez, várias gerações da família Buendía vivem na cidade fictícia de Macondo. O romance mistura acontecimentos cotidianos e extraordinários para refletir sobre memória, destino, poder e os ciclos que atravessam uma família.",
+        pergunta: "Para conversar no clube: o que uma família transmite de geração em geração, mesmo sem perceber?"
+      }
+    ];
+
+    const listaLivros = document.getElementById("listaLivros");
+    const modalLivro = document.getElementById("modalLivro");
+
+    function abrirLivro(indice) {
+      const livro = livros[indice];
+      document.getElementById("imagemModal").src = livro.imagem;
+      document.getElementById("imagemModal").alt = "Imagem de referência para " + livro.titulo;
+      document.getElementById("categoriaModal").textContent = livro.categoria;
+      document.getElementById("tituloModal").textContent = livro.titulo;
+      document.getElementById("sinopseModal").textContent = livro.sinopse;
+      document.getElementById("perguntaModal").textContent = livro.pergunta;
+      modalLivro.classList.add("aberto");
+      document.body.style.overflow = "hidden";
+      document.getElementById("fecharModal").focus();
+    }
+
+    function fecharLivro() {
+      modalLivro.classList.remove("aberto");
+      document.body.style.overflow = "";
+    }
+
+    listaLivros.querySelectorAll("[data-livro]").forEach(function(cartao) {
+      cartao.addEventListener("click", function() {
+        abrirLivro(Number(cartao.dataset.livro));
+      });
+    });
+
+    document.getElementById("fecharModal").addEventListener("click", fecharLivro);
+    document.getElementById("voltarEstante").addEventListener("click", fecharLivro);
+
+    modalLivro.addEventListener("click", function(evento) {
+      if (evento.target === modalLivro) {
+        fecharLivro();
+      }
+    });
+
+    document.addEventListener("keydown", function(evento) {
+      if (evento.key === "Escape") {
+        fecharLivro();
+      }
+    });
+
+    document.getElementById("anterior").addEventListener("click", function() {
+      listaLivros.scrollBy({ left: -listaLivros.clientWidth * 0.8, behavior: "smooth" });
+    });
+
+    document.getElementById("proximo").addEventListener("click", function() {
+      listaLivros.scrollBy({ left: listaLivros.clientWidth * 0.8, behavior: "smooth" });
+    });
+
+    document.getElementById("botaoInteresse").addEventListener("click", function() {
+      document.getElementById("mensagemInteresse").classList.toggle("visivel");
+    });
+  </script>
+</body>
+</html>
